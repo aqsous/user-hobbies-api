@@ -13,21 +13,21 @@ if (process.env.NODE_ENV == null) {
 
 
 export class IServerConfigurations {
-  port?: number;
-  constructor(port?: number){
+  port: number;
+  constructor(port: number){
     this.port = port
   }
 }
 
 export class IDataConfiguration {
-  connectionString?: string;
-  constructor(connectionString?: string) {
+  connectionString: string;
+  constructor(connectionString: string) {
     this.connectionString = connectionString
   }
 }
 
 export function getDatabaseConfig(): IDataConfiguration {
-  const dataConfiguration = new IDataConfiguration(process.env.MONGO_URI);
+  const dataConfiguration = new IDataConfiguration(process.env.MONGO_URI || '');
   return dataConfiguration;
 }
 
