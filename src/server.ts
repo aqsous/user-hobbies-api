@@ -2,6 +2,7 @@ import * as Hapi from 'hapi';
 import { IPlugin } from "./plugins/interfaces";
 import { IServerConfigurations } from './configurations';
 import { IDatabase } from "./database";
+import Routes from './api/v1/routes';
 
 export async function init(
   configs: IServerConfigurations,
@@ -32,7 +33,7 @@ export async function init(
     await plugin.register(server, pluginOptions);
 
     console.log("Register Routes");
-    //
+    Routes(server, configs, database);
     console.log("Routes registered sucessfully.");
 
     return server;

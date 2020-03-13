@@ -1,7 +1,11 @@
 import Mongoose = require('mongoose');
 import { IDataConfiguration } from "./configurations";
+import { IUser, UserModel } from "./api/v1/models/user.model";
+import { IHobby, HobbyModel } from "./api/v1/models/hobby.model";
 
 export interface IDatabase {
+  userModel: Mongoose.Model<IUser>;
+  hobbyModel: Mongoose.Model<IHobby>;
 }
 
 export function init(config: IDataConfiguration): IDatabase {
@@ -23,5 +27,7 @@ export function init(config: IDataConfiguration): IDatabase {
   });
 
   return {
+    userModel: UserModel,
+    hobbyModel: HobbyModel
   };
 }
