@@ -1,4 +1,5 @@
 import * as Hapi from 'hapi';
+import { IPlugin } from "./plugins/interfaces";
 import { IServerConfigurations } from './configurations';
 import { IDatabase } from "./database";
 
@@ -25,6 +26,10 @@ export async function init(
     };
 
     console.log("All plugins registered successfully.");
+
+    var plugin: IPlugin = require('./plugins/swagger').default();
+
+    await plugin.register(server, pluginOptions);
 
     console.log("Register Routes");
     //
